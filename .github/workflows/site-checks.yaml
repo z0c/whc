@@ -1,0 +1,25 @@
+
+name: Site Checks
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every 5 minutse
+  workflow_dispatch:
+
+env:
+  DOMAIN: webhostingcompare.com
+  
+jobs:
+  check:
+    name: Site checks
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Home page curl succeeds
+        run: curl -fs -w "%{http_code}" https://${DOMAIN}
+ 
+      - name: Home does not have links for www domain
+        run: exit $(curl -s https://${DOMAIN} 2>&1 |grep -cF https://www.${DOMAIN})
+        
+      - name: Home does not have links for wordpress domain
+        run: exit $(curl -s https://${DOMAIN} 2>&1 |grep -cF http://wordpress.${DOMAIN})
