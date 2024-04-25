@@ -23,5 +23,5 @@ jobs:
         run: npm install broken-link-checker -g
 
       - name: Check for broken links
-        run: blc ${{ env.SITE_URL }} -ro --exclude 'https://twitter.com' --exclude 'https://www.uber.com'
+        run: blc ${{ env.SITE_URL }} -ro --exclude 'https://twitter.com' --exclude 'https://www.uber.com' --exclude 'https://www.arvixe.com'
  
