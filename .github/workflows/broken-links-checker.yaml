@@ -14,9 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 14
+
+      - uses: gautamkrishnar/keepalive-workflow@v2
 
       # https://github.com/stevenvachon/broken-link-checker
       - name: Install broken link checker
